@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+        {%load static%} <!--加载静态资源-->
+        <script  src="{%static 'js/echarts.js'%}"></script>
+         <script type="text/javascript" src="{%static 'js/china.js'%}"></script>
+        <style>#china-map {width:1000px; height: 1000px;margin: auto;}</style>
+</head>
+<body>
+<h2>社科项目综合分析平台</h2>
+<form action='/ssp/selectProjectsByConditions/' method='post'>
+    {%csrf_token%}
+    {%csrf_token%}
+<table border="1" width="1000">
+    <tr>
+        <td>项目批准号</td>
+         <td><input name="xmpzh" type="text"  class="input03"/></td>
+         <td>项目类别</td>
+         <td><select name="xmlb"><option value="0">--全部--</option>
+            <option value="重大项目" >重大项目</option>
+            <option value="重点项目" >重点项目</option>
+            <option value="一般项目" >一般项目</option>
+            <option value="青年项目" >青年项目</option>
+            <option value="西部项目" >西部项目</option>
+            <option value="后期资助项目" >后期资助项目</option>
+            <option value="中华学术外译项目" >中华学术外译项目</option>
+            <option value="成果文库" >成果文库</option>
+            </select></td>
+         <td>学科分类</td>
+         <td><select name="xkfl">
+            <option value="0">--全部--</option>
+            <option value="马列·科社" >马列•科社</option>
+            <option value="党史·党建" >党史•党建</option>
+            <option value="哲学" >哲学</option>
+            <option value="理论经济" >理论经济</option>
+            <option value="应用经济" >应用经济</option>
+            <option value="统计学" >统计学</option>
+            <option value="政治学" >政治学</option>
+            <option value="法学" >法学</option>
+            <option value="国际问题研究" >国际问题研究</option>
+            <option value="社会学" >社会学</option>
+            <option value="体育学" >体育学</option>
+            <option value="人口学" >人口学</option>
+            <option value="民族问题研究" >民族问题研究</option>
+            <option value="宗教学" >宗教学</option>
+            <option value="中国历史" >中国历史</option>
+            <option value="世界历史" >世界历史</option>
+            <option value="考古学" >考古学</option>
+            <option value="中国文学" >中国文学</option>
+            <option value="外国文学" >外国文学</option>
+            <option value="语言学" >语言学</option>
+            <option value="管理学" >管理学</option>
+            <option value="新闻学与传播学" >新闻学与传播学</option>
+            <option value="图书馆、情报与文献学" >图书馆、情报与文献学</option>
+            <option value="教育学" >教育学</option>
+            <option value="艺术学" >艺术学</option>
+            <option value="军事学" >军事学</option>
+
+             </select></td>
+    </tr>
+<tr>
+    <td>项目名称&nbsp;&nbsp;</td>
+    <td><input name="xmmc" type="text"/></td>
+    <td>立项时间</td>
+    <td><select name="lxsj"><option value="0">--全部--</option>
+           	<option value="2020" >2020</option>
+            <option value="2019" >2019</option>
+            <option value="2018" >2018</option>
+            <option value="2017" >2017</option>
+            <option value="2016" >2016</option>
+            <option value="2015" >2015</option>
+            <option value="2014" >2014</option>
+            <option value="2013" >2013</option>
+            <option value="2012" >2012</option>
+            <option value="2011" >2011</option>
+            <option value="2010" >2010</option>
+            <option value="2009" >2009</option>
+            <option value="2008" >2008</option>
+            <option value="2007" >2007</option>
+            <option value="2006" >2006</option>
+            <option value="2005" >2005</option>
+            <option value="2004" >2004</option>
+            <option value="2003" >2003</option>
+            <option value="2002" >2002</option>
+            <option value="2001" >2001</option>
+            <option value="2000" >2000</option>
+            <option value="1999" >1999</option>
+            <option value="1998" >1998</option>
+            <option value="1997" >1997</option>
+            <option value="1996" >1996</option>
+            <option value="1995" >1995</option>
+            <option value="1994" >1994</option>
+            </select></td>
+    <td>项目负责人</td>
+    <td><input name="xmfzr" type="text" /></td>
+
+</tr>
+    <tr>
+        <td>工作单位</td>
+        <td><input name="gzdw" type="text" /></td>
+        <td>所在省区市</td>
+        <td><select name="szssq">
+            <option value="0">--全部--</option>
+            <option value="北京" >北京</option>
+            <option value="上海" >上海</option>
+            <option value="天津" >天津</option>
+            <option value="重庆" >重庆</option>
+            <option value="内蒙古" >内蒙古</option>
+
+            <option value="广西" >广西</option>
+            <option value="宁夏" >宁夏</option>
+            <option value="新疆" >新疆</option>
+            <option value="西藏" >西藏</option>
+            <option value="黑龙江" >黑龙江</option>
+
+            <option value="吉林" >吉林</option>
+            <option value="辽宁" >辽宁</option>
+            <option value="河北" >河北</option>
+            <option value="山东" >山东</option>
+            <option value="江苏" >江苏</option>
+
+            <option value="浙江" >浙江</option>
+            <option value="福建" >福建</option>
+            <option value="广东" >广东</option>
+            <option value="四川" >四川</option>
+            <option value="贵州" >贵州</option>
+
+            <option value="河南" >河南</option>
+            <option value="湖南" >湖南</option>
+            <option value="湖北" >湖北</option>
+            <option value="甘肃" >甘肃</option>
+            <option value="陕西" >陕西</option>
+
+            <option value="山西" >山西</option>
+            <option value="云南" >云南</option>
+            <option value="青海" >青海</option>
+            <option value="江西" >江西</option>
+            <option value="安徽" >安徽</option>
+
+            <option value="海南" >海南</option>
+            <option value="军队" >军队</option>
+            <option value="机关" >机关</option>
+            <option value="高校" >高校</option>
+            <option value="社科院" >社科院</option>
+            <option value="兵团" >兵团</option>
+            <option value="党校" >党校</option>
+            </select></td>
+        <td>搜索</td>
+        <td><input type="submit" value="搜索"></td>
+    </tr>
+
+</table>
+
+
+
+</form>
+<table border="1" width="95%">
+    {% for data in contacts %}
+    <tr>
+
+        <td>项目批准号</td>
+         <td>项目类别</td>
+         <td>学科分类</td>
+         <td>项目名称</td>
+         <td>立项时间</td>
+         <td>项目负责人</td>
+        <td> 专业职务</td>
+         <td>工作单位</td>
+        <td>单位类别</td>
+        <td>所在省区市</td>
+        <td>所属系统</td>
+    </tr>
+    <tr>
+         <td>{{data.xmpzh}}</td>
+         <td>{{data.xmlb}}</td>
+         <td>{{data.xkfl}}</td>
+         <td>{{data.xmmc}}</td>
+         <td>{{data.lxsj}}</td>
+         <td>{{data.xmfzr}}</td>
+        <td>{{data.zyzw}}</td>
+         <td>{{data.gzdw}}</td>
+        <td>{{data.dwlb}}</td>
+        <td>{{data.szssq}}</td>
+        <td>{{data.ssxt}}</td>
+    </tr>
+    {% endfor %}
+</table>
+<div class="pagination">
+    <span class="step-links">
+        {% if contacts.has_previous %}
+            <a href="?page={{ contacts.previous_page_number }}">上一页</a>
+        {% endif %}
+
+        <span class="current">
+            第 {{ contacts.number }}页， 共 {{ contacts.paginator.num_pages }}页.
+        </span>
+
+        {% if contacts.has_next %}
+            <a href="?page={{ contacts.next_page_number }}">下一页</a>
+        {% endif %}
+    </span>
+</div>
+ {% load static%}
+        <script src='https://cdn.bootcss.com/echarts/3.7.0/echarts.simple.js'></script>
+        <script src="{%static 'js/echarts-wordcloud.js'%}"></script>
+<style>
+            html, body, #main {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+            }
+        </style>
+        <div id='main'></div>
+ <script>
+            var chart = echarts.init(document.getElementById('main'));
+
+            var option = {
+                tooltip: {},
+                series: [ {
+                    type: 'wordCloud',
+                    gridSize: 2,
+                    sizeRange: [12, 50],
+                    rotationRange: [-90, 90],
+                    shape: 'pentagon',
+                    width: 600,
+                    height: 400,
+                    drawOutOfBound: true,
+                    textStyle: {
+                        normal: {
+                            color: function () {
+                                return 'rgb(' + [
+                                    Math.round(Math.random() * 160),
+                                    Math.round(Math.random() * 160),
+                                    Math.round(Math.random() * 160)
+                                ].join(',') + ')';
+                            }
+                        },
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowColor: '#333'
+                        }
+                    },
+                    data: {{wordclouds|safe}}
+                } ]
+            };
+
+            chart.setOption(option);
+
+            window.onresize = chart.resize;
+        </script>
+<!--Pie Chart-->
+ <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/echarts.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@1/dist/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@1/dist/ecStat.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/china.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/world.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/bmap.min.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+var data = genData(50);
+
+option = {
+    title: {
+        text: '项目类别图',
+
+        left: 'center'
+    },
+    tooltip: {
+        trigger: 'item',
+        formatter: '{a} <br/>{b} : {c} ({d}%)'
+    },
+    legend: {
+        type: 'scroll',
+        orient: 'vertical',
+        right: 10,
+        top: 20,
+        bottom: 20,
+        data:['重大项目','重点项目','一般项目','青年项目','西部项目','后期资助项目','中华学术外译项目','成果文库','9','']
+
+        selected: data.selected
+    },
+    series: [
+        {
+            name: '项目类别图',
+            type: 'pie',
+            radius: '55%',
+            center: ['40%', '50%'],
+            data: {{xmlb_data|safe}},
+            emphasis: {
+                itemStyle: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+};
+
+
+
+
+function genData(count) {
+    var nameList = [
+        '赵', '钱', '孙', '李', '周', '吴', '郑', '王', '冯', '陈', '褚', '卫', '蒋', '沈', '韩', '杨', '朱', '秦', '尤', '许', '何', '吕', '施', '张', '孔', '曹', '严', '华', '金', '魏', '陶', '姜', '戚', '谢', '邹', '喻', '柏', '水', '窦', '章', '云', '苏', '潘', '葛', '奚', '范', '彭', '郎', '鲁', '韦', '昌', '马', '苗', '凤', '花', '方', '俞', '任', '袁', '柳', '酆', '鲍', '史', '唐', '费', '廉', '岑', '薛', '雷', '贺', '倪', '汤', '滕', '殷', '罗', '毕', '郝', '邬', '安', '常', '乐', '于', '时', '傅', '皮', '卞', '齐', '康', '伍', '余', '元', '卜', '顾', '孟', '平', '黄', '和', '穆', '萧', '尹', '姚', '邵', '湛', '汪', '祁', '毛', '禹', '狄', '米', '贝', '明', '臧', '计', '伏', '成', '戴', '谈', '宋', '茅', '庞', '熊', '纪', '舒', '屈', '项', '祝', '董', '梁', '杜', '阮', '蓝', '闵', '席', '季', '麻', '强', '贾', '路', '娄', '危'
+    ];
+    var legendData = [];
+    var seriesData = [];
+    var selected = {};
+    for (var i = 0; i < count; i++) {
+        name = Math.random() > 0.65
+            ? makeWord(4, 1) + '·' + makeWord(3, 0)
+            : makeWord(2, 1);
+        legendData.push(name);
+        seriesData.push({
+            name: name,
+            value: Math.round(Math.random() * 100000)
+        });
+        selected[name] = i < 6;
+    }
+
+    return {
+        legendData: legendData,
+        seriesData: seriesData,
+        selected: selected
+    };
+
+    function makeWord(max, min) {
+        var nameLen = Math.ceil(Math.random() * max + min);
+        var name = [];
+        for (var i = 0; i < nameLen; i++) {
+            name.push(nameList[Math.round(Math.random() * nameList.length - 1)]);
+        }
+        return name.join('');
+    }
+}
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+
+<!--柱状图-->
+
+       <div id="container1" style="height: 100%"></div>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/echarts.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@1/dist/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@1/dist/ecStat.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/china.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/map/js/world.js"></script>
+       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@4/dist/extension/bmap.min.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container1");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+option = {
+    xAxis: {
+        type: 'category',
+        data: {{x_data|safe}},
+        "axisLabel":{interval:0,rotate:45,},
+    },
+    yAxis: {
+        type: 'value'
+    },
+    series: [{
+        data: {{y_data|safe}},
+        type: 'bar',
+        showBackground: true,
+        backgroundStyle: {
+            color: 'rgba(220, 220, 220, 0.8)'
+        }
+    }]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+<!--地图-->
+<div id="china-map"></div>
+
+        <script>
+            var myChart = echarts.init(document.getElementById('china-map'));
+            var option = {
+                tooltip: {
+//                    show: false //不显示提示标签
+                    formatter: '{b}', //提示标签格式
+                    backgroundColor:"#ff7f50",//提示标签背景颜色
+                    textStyle:{color:"#fff"} //提示标签字体颜色
+                },
+                series: [{
+         name: '',
+     type: 'map',
+     mapType: 'china',
+     roam: false,
+     itemStyle: {
+         normal: {
+             label: {
+                 show: true,
+                 formatter:'{b}\n{c}',
+             },
+             borderWidth:0
+         },
+         emphasis: {
+             label: {
+                 show: false
+             },
+             areaColor:'rgb(213, 214, 79)',
+         }
+     },
+     top: "10%", //组件距离容器的距离
+
+     data: {{map_data|safe}},
+
+                }],
+            };
+
+            myChart.setOption(option);
+            myChart.on('mouseover', function (params) {
+                var dataIndex = params.dataIndex;
+                console.log(params);
+            });
+        </script>
+</body>
+</html>
